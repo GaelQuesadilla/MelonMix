@@ -15,14 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from .views import index, favicon, manifest, logo192, logo512
+from django.urls import path, include
+from .views import Index, Favicon, Manifest, Logo192, Logo512
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index.as_view(), name='index'),
-    path('favicon.ico', favicon, name='favicon'),
-    path('manifest.json', manifest, name='manifest'),
-    path('logo192.png', logo192, name='logo192'),
-    path('logo512.png', logo512, name='logo512'),
+    path('', Index.as_view(), name='index'),
+    path('favicon.ico', Favicon.as_view(), name='favicon'),
+    path('manifest.json', Manifest.as_view(), name='manifest'),
+    path('logo192.png', Logo192.as_view(), name='logo192'),
+    path('logo512.png', Logo512.as_view(), name='logo512'),
+    path('media/', include('audioServer.urls'))
 ]
