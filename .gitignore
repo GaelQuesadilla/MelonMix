@@ -27,3 +27,9 @@ frontend/yarn-error.log*
 .vscode
 
 db.sqlite3
+
+migrations/
+
+Pipfile.lock
+
+media

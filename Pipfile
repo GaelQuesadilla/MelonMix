@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 colorama = "*"
 django = "*"
+django-taggit = "*"
 
 [dev-packages]
 
