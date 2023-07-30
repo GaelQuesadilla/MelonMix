@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { Home } from "./routes/Home";
 import * as ROUTES from "./constants/routes.js";
 import { HomeLayout } from "./layouts/HomeLayout";
+import "./styles/index.scss";
 
 export const App = () => {
   return (

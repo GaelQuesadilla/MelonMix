@@ -1,0 +1,7 @@
+// Default variables
+@use "variables" as *;
+
+$body-bg: map-get($theme-colors, "dark");
+
+// Import bootstrap
+@import "~/node_modules/bootstrap/scss/bootstrap";
