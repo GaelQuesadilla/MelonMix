@@ -1,31 +1,28 @@
-from django.views.generic import TemplateView
-from django.views import View
-from django.shortcuts import render
-from django.http import FileResponse
+from django.views.generic import View, TemplateView
+from django.http import HttpResponse, FileResponse
+from django.shortcuts import redirect, render
+from django.conf import settings
 
 
-class Index(TemplateView):
+class ServeReactView(View):
+
+    def get(self, request, *args, **kwargs):
+        try:
+            filename = request.path.strip('/')
+            print(filename)
+            if filename == 'index.html':
+                return redirect('/')
+            file = open(f'{settings.REACT_BUILD_URL}/{filename}', 'rb')
+            return FileResponse(file)
+        except Exception:
+            return HttpResponse(
+                """
+            {} not found!
+            """.format(request.path), status=501)
+
+
+class IndexView(TemplateView):
     template_name = 'index.html'
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {})
-
-
-class Favicon(View):
-    def get(self, request,  *args, **kwargs):
-        return FileResponse(open('frontend/build/favicon.ico', 'rb'))
-
-
-class Manifest(View):
-    def get(self, request,  *args, **kwargs):
-        return FileResponse(open('frontend/build/manifest.json', 'rb'))
-
-
-class Logo192(View):
-    def get(self, request,  *args, **kwargs):
-        return FileResponse(open('frontend/build/logo192.png', 'rb'))
-
-
-class Logo512(View):
-    def get(self, request,  *args, **kwargs):
-        return FileResponse(open('frontend/build/logo512.png', 'rb'))
+        return render(request, self.template_name)
