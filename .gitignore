@@ -30,6 +30,4 @@ db.sqlite3
 
 migrations/
 
-Pipfile.lock
-
 media
