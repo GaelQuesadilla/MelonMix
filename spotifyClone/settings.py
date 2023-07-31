@@ -18,8 +18,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Import paths from React App
-REACT_BUILD_URL = os.environ.get('REACT_BUILD_URL')
-REACT_STATIC_URL = os.environ.get('REACT_STATIC_URL')
+REACT_BUILD_URL = 'frontend/build'
+REACT_STATIC_URL = 'frontend/build/static'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'spotifyClone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'frontend/build')],
+        'DIRS': [os.path.join(BASE_DIR, REACT_BUILD_URL)],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,3 +132,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, REACT_STATIC_URL)]
+
+# ╭─── Code by 𝓖𝓪𝓮𝓵𝓠𝓾𝓮𝓼𝓪𝓭𝓲𝓵𝓵𝓪 ───╮
