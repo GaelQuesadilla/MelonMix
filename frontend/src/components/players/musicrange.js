@@ -10,6 +10,8 @@ export const MusicRange = (props) => {
         onChange={(event) => props.setMusicTime(event.target.value)}
         className="mx-auto my-3"
         name="music progress"
+        data-testid="playerSliderInput"
+        role="slider"
       ></Form.Range>
     </>
   );

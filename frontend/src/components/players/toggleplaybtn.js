@@ -8,11 +8,13 @@ export const TogglePlayBtn = (props) => {
         className="btn-success rounded-3 my-3 mx-auto toggle-play-btn__btn text-center fs-6"
         onClick={props.toggleMusicPlay}
         name="toggle play"
+        data-testid="playerTogglePlayBtn"
+        role="button"
       >
         {props.play ? (
-          <PauseIcon test-id="pause-icon" />
+          <PauseIcon data-testid="player-pause-icon" />
         ) : (
-          <PlayIcon test-id="play-icon" />
+          <PlayIcon data-testid="player-play-icon" />
         )}
       </Button>
     </Container>
