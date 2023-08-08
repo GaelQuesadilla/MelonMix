@@ -1,25 +1,37 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export const UseMusic = () => {
+export const UseMusic = (howlerRef) => {
   const [music, setMusic] = useState({
     url: null,
     play: false,
     time: 0,
     name: "",
     artist: "",
-    totalTime: 0,
+    duration: 0,
   });
+  const setIntervalRef = useRef();
 
-  const toggleMusicPlay = () => {
-    setMusic((prev) => ({ ...prev, play: !prev.play }));
-  };
-  const setMusicPlay = (value) => {
-    setMusic((prev) => ({ ...prev, play: value }));
-  };
+  useEffect(() => {
+    howlerRef.current.seek(music.time);
 
-  const setMusicTime = (value) => {
-    setMusic((prev) => ({ ...prev, time: value }));
-  };
+    return () => {};
+  }, [music.time]);
 
-  return { music, setMusic, toggleMusicPlay, setMusicPlay, setMusicTime };
+  useEffect(() => {
+    if (music.play === true) {
+      setIntervalRef.current = setInterval(() => {
+        setMusic((prev) => ({ ...prev, time: howlerRef.current.seek() }));
+      }, 500);
+    }
+
+    return () => {
+      clearInterval(setIntervalRef.current);
+      setIntervalRef.current = undefined;
+    };
+  }, [music.play]);
+
+  return {
+    music,
+    setMusic,
+  };
 };

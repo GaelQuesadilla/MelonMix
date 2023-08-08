@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'audioServer',
     'taggit',
+    'corsheaders',
 
 ]
 
@@ -55,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'spotifyClone.urls'
@@ -132,5 +135,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, REACT_STATIC_URL)]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
 
 # ╭─── Code by 𝓖𝓪𝓮𝓵𝓠𝓾𝓮𝓼𝓪𝓭𝓲𝓵𝓵𝓪 ───╮

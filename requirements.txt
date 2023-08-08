@@ -1,6 +1,7 @@
 asgiref==3.7.2
 colorama==0.4.6
-Django==4.2.3
+Django==4.2.4
+django-cors-headers==4.2.0
 django-taggit==4.0.0
 sqlparse==0.4.4
 tzdata==2023.3
