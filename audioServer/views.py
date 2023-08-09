@@ -46,8 +46,7 @@ class GetDataView(View):
                 "tags": list(result.tags.names())
             }
             serialized_results.append(serialized_result)
-        response = [
-            {"result": serialized_results},
-            {"search": self.request.GET}
-        ]
+        response = {
+            "result": serialized_results,
+            "search": self.request.GET}
         return JsonResponse(response, safe=False)

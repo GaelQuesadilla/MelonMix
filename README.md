@@ -40,6 +40,36 @@ npm run build
 python manage.py runserver
 ```
 
+# Add Music
+
+If you wish to automatically add music, follow these steps to set up and load songs into the application.
+
+## Initial setup
+
+1. Create a file named .env in the project root if it doesn't exist.
+
+2. Open the .env file and add the following line, replacing C:\your\music\directory with the full path to the directory containing the songs you want to add.
+
+```env
+INITIAL_MUSIC_DIR =  C:\your\music\directory
+```
+
+Make sure the path is correctly written and there are no extra spaces.
+
+## File Format
+
+It's crucial that the songs are in .mp3 format and the files follow a specific naming convention: artist-title.mp3. This will ensure that the song details are captured accurately in the application.
+
+## Data Loading
+
+Once you've set up the folder with songs and adjusted the .env file, you can load the song data into the application using the following command:
+
+```bat
+python manage.py load_audio_data
+```
+
+Once you've set up the folder with songs and adjusted the .env file, you can load the song data into the application using the following command:
+
 # Contact
 
 If you have any questions, suggestions, or just want to say hello, you can reach me at: gaeldev032@gmail.com
