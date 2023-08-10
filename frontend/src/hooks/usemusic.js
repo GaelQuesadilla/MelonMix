@@ -8,6 +8,7 @@ export const UseMusic = (howlerRef) => {
     name: "",
     artist: "",
     duration: 0,
+    id: -1,
   });
   const setIntervalRef = useRef();
 

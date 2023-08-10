@@ -6,7 +6,9 @@ MelonMix is a cloud-based music player that allows users to listen to music host
 # Features
 
 - [x] Cloud music hosting
-- [ ] Music player
+- [x] Music filter in backend
+- [x] Music player
+- [x] Music cards in UI
 - [ ] Playlist creation
 
 # Installation

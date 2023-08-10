@@ -18,14 +18,21 @@ class GetDataView(View):
         title = self.request.GET.get("title")
         author = self.request.GET.get("author")
         tags = self.request.GET.get("tags")
+        initial_index = self.request.GET.get("initial_index")
 
         if max_results is None or int(max_results) <= 0:
             max_results = 10
         else:
             max_results = int(max_results)
 
-        if tags is not None:
+        if tags:
             tags = tags.split(",")
+
+        if initial_index is None or int(initial_index) < 0:
+            initial_index = 0
+        else:
+            initial_index = int(initial_index)
+
         queryset = Audio.objects.all()
 
         if title:
@@ -35,18 +42,19 @@ class GetDataView(View):
         if tags:
             queryset = queryset.filter(tags__name__in=tags)
 
-        results = list(queryset.order_by('id')[:max_results])
+        results = list(queryset.order_by('id')[initial_index:][:max_results])
         serialized_results = []
         for result in results:
             print(result.title)
             serialized_result = {
-                "title": result.title,
-                "author": result.author.author,
+                "name": result.title,
+                "artist": result.author.author,
                 "url": result.audio.url,
-                "tags": list(result.tags.names())
+                "tags": list(result.tags.names()),
+                "id": result.pk
             }
             serialized_results.append(serialized_result)
         response = {
-            "result": serialized_results,
+            "results": serialized_results,
             "search": self.request.GET}
         return JsonResponse(response, safe=False)

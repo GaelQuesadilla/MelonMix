@@ -3,7 +3,9 @@ import { Home } from "./routes/Home";
 import * as ROUTES from "./constants/routes.js";
 import { HomeLayout } from "./layouts/HomeLayout";
 import "./styles/index.scss";
+import { createContext } from "react";
 
+const MusicContext = createContext(null);
 export const App = () => {
   return (
     <div id="app">
@@ -12,8 +14,8 @@ export const App = () => {
           exact
           path={ROUTES.HOME}
           element={
-            <HomeLayout>
-              <Home />
+            <HomeLayout {...{ MusicContext }}>
+              <Home {...{ MusicContext }} />
             </HomeLayout>
           }
         />
