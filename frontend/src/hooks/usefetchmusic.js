@@ -19,7 +19,10 @@ export const UseFetchMusic = () => {
       Object.assign({}, searchFilters, searchParams)
     ).toString();
 
-    fetch(process.env.REACT_APP_BACKEND_URL + "/media/get/?" + params)
+    fetch(process.env.REACT_APP_BACKEND_URL + "/media/get/?" + params, {
+      method: "GET",
+      mode: "cors",
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data.results.length === 0) {

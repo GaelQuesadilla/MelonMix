@@ -49,14 +49,14 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
 
@@ -139,5 +139,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, REACT_STATIC_URL)]
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # ╭─── Code by 𝓖𝓪𝓮𝓵𝓠𝓾𝓮𝓼𝓪𝓭𝓲𝓵𝓵𝓪 ───╮
