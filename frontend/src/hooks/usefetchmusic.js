@@ -7,10 +7,12 @@ export const UseFetchMusic = () => {
   });
   const [searchParams, setSearchParams] = useState({
     initial_index: "0",
-    max_results: "3",
+    max_results: "10",
   });
   const [searchResults, setSearchResults] = useState([]);
   const currentIds = useRef([]);
+
+  const hasMoreResultsRef = useRef(false);
 
   const getByFetch = (func) => {
     const params = new URLSearchParams(
@@ -20,6 +22,11 @@ export const UseFetchMusic = () => {
     fetch(process.env.REACT_APP_BACKEND_URL + "/media/get/?" + params)
       .then((response) => response.json())
       .then((data) => {
+        if (data.results.length === 0) {
+          hasMoreResultsRef.current = false;
+        } else {
+          hasMoreResultsRef.current = true;
+        }
         func(data);
       });
   };
@@ -50,7 +57,6 @@ export const UseFetchMusic = () => {
       });
 
       // Adding new elements
-      console.debug("New elements", filteredResults);
       setSearchResults((prev) => [...prev, ...filteredResults]);
     });
     return () => {};
@@ -63,5 +69,6 @@ export const UseFetchMusic = () => {
     searchParams,
     setSearchParams,
     searchResults,
+    hasMoreResultsRef,
   };
 };

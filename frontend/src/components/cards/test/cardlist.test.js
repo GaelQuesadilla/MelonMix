@@ -2,6 +2,13 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { CardList } from "../cardlist.js"; // Ajusta la ruta a tu archivo
 
+class mockIntersectionObserver {
+  constructor() {
+    this.observe = jest.fn();
+    this.disconnect = jest.fn();
+  }
+}
+window.IntersectionObserver = mockIntersectionObserver;
 describe("CardList", () => {
   it("renders the component with search results", () => {
     const searchResults = [

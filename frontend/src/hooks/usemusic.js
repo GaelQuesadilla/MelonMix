@@ -16,6 +16,7 @@ export const UseMusic = (howlerRef) => {
     howlerRef.current.seek(music.time);
 
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [music.time]);
 
   useEffect(() => {
@@ -29,6 +30,7 @@ export const UseMusic = (howlerRef) => {
       clearInterval(setIntervalRef.current);
       setIntervalRef.current = undefined;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [music.play]);
 
   return {
