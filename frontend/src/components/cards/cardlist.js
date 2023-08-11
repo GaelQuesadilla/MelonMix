@@ -29,7 +29,9 @@ export const CardList = (props) => {
   };
   return (
     <>
-      <h2 className="w-100 ps-3 my-2">Listen music</h2>
+      <Container className="fs-2 shadow rounded my-5 px-5 py-3 d-flex justify-content-center">
+        <p className="m-0">Listen Music</p>
+      </Container>
       <Container
         data-testid="card-list"
         className="d-flex flex-wrap m-0 mx-auto p-0 justify-content-center"

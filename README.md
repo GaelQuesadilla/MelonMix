@@ -3,6 +3,8 @@
 My Project
 MelonMix is a cloud-based music player that allows users to listen to music hosted on their own servers using Django on the server's backend and React on the frontend for a smooth user experience.
 
+![MelonMix](images/app.png)
+
 # Features
 
 - [x] Cloud music hosting

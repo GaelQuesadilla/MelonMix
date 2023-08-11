@@ -9,7 +9,7 @@ export const PlayerBottom = (props) => {
   const { music, setMusic } = props;
   return (
     <div className=" position-fixed bottom-0 w-100">
-      <Container className="player-bottom bg-dark text-light rounded-0 w-100 mx-auto">
+      <Container className="player-bottom text-light rounded-top-4 w-100 mx-auto bg-dark">
         <Row className="player-bottom__grid">
           <Col className="music-toggle-btn w-100">
             <TogglePlayBtn play={music.play} {...{ setMusic }} />
