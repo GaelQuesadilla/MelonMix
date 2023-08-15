@@ -11,6 +11,9 @@ django-cors-headers = "*"
 pillow = "*"
 
 [dev-packages]
+google-images-search = "*"
+windows-curses = "*"
+request = "*"
 
 [requires]
 python_version = "3.11"

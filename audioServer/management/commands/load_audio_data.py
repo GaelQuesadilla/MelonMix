@@ -3,10 +3,30 @@ from django.core.management.base import BaseCommand
 from django.core.files import File
 from audioServer.models import Author, Audio
 from django.conf import settings
+from google_images_search import GoogleImagesSearch
+import requests
+from io import BytesIO
+from PIL import Image
 
 
 class Command(BaseCommand):
     help = 'load music from your location'
+
+    def get_cover_url(self, author, title):
+        query = f'"{author}" "{title}" "cover art" OR "album cover" OR "single cover" OR "Song" OR "Spotify"'
+
+        gis = GoogleImagesSearch(
+            settings.GOOGLE_API_KEY, settings.GOOGLE_API_CX)
+        search_params = {
+            'q': query,
+            'num': 1,
+            'fileType': 'jpg|png',
+        }
+
+        gis.search(search_params=search_params)
+        for image in gis.results():
+            return image.url
+        return None
 
     def handle(self, *args, **options):
         music_directory = os.environ.get("INITIAL_MUSIC_DIR")
@@ -33,6 +53,18 @@ class Command(BaseCommand):
                 with open(file_path, 'rb') as audio_file:
                     audio.audio.save(filename, File(audio_file))
                 audio.save()
+
+                cover_image_url = self.get_cover_url(
+                    author=author_name, title=title)
+                if cover_image_url:
+                    response = requests.get(cover_image_url)
+                    if response.status_code == 200:
+                        img = Image.open(BytesIO(response.content))
+                        output_io = BytesIO()
+                        img.save(output_io, format="PNG")
+                        output_io.seek(0)
+                        audio.cover_image.save(
+                            f'{author_name} - {title}.png', File(output_io))
 
                 self.stdout.write(self.style.SUCCESS(
                     f'Audio created: {title} by {author_name}'))

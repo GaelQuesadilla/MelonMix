@@ -26,6 +26,8 @@ REACT_STATIC_URL = 'frontend/build/static'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
+GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
+GOOGLE_API_CX = os.environ.get('GOOGLE_API_CX')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
