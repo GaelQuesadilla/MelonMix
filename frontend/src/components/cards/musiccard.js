@@ -16,7 +16,7 @@ export const MusicCard = forwardRef((props, ref) => {
       >
         <Card.Img
           className={`music-card__image ${imageLoaded ? "" : "d-none"}`}
-          src={process.env.REACT_APP_BACKEND_URL + "/images/music-note.png"}
+          src={process.env.REACT_APP_BACKEND_URL + music.cover_url}
           alt="music-note"
           variant="top"
           onLoad={() => setImageLoaded(true)}
