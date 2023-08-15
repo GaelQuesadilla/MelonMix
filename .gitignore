@@ -33,4 +33,5 @@ db.sqlite3
 
 migrations/
 
-media
+media/audio
+media/covers

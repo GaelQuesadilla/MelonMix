@@ -8,6 +8,7 @@ colorama = "*"
 django = "*"
 django-taggit = "*"
 django-cors-headers = "*"
+pillow = "*"
 
 [dev-packages]
 

@@ -1,6 +1,6 @@
 from django.views import View
 from django.core.serializers import serialize
-from django.http import FileResponse, JsonResponse
+from django.http import FileResponse, JsonResponse, HttpResponse
 from .models import Audio
 import json
 
@@ -10,6 +10,21 @@ class AudioView(View):
     def get(self, request, *args, **kwargs):
         audio_name = kwargs['audio_name']
         return FileResponse(open(f'media/audio/{audio_name}', 'rb'))
+
+
+class GetMediaFile(View):
+
+    def get(self, request, *args, **kwargs):
+        try:
+            filename = request.path.strip('/')
+            print(f'FILENAME IS {filename}')
+            file = open(f'{filename}', 'rb')
+            return FileResponse(file)
+        except Exception:
+            return HttpResponse(
+                """
+            {} not found!
+            """.format(request.path), status=501)
 
 
 class GetDataView(View):
@@ -51,7 +66,8 @@ class GetDataView(View):
                 "artist": result.author.author,
                 "url": result.audio.url,
                 "tags": list(result.tags.names()),
-                "id": result.pk
+                "id": result.pk,
+                "cover": result.cover_image.url
             }
             serialized_results.append(serialized_result)
         response = {

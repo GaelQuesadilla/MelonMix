@@ -24,6 +24,8 @@ class Audio(models.Model):
     uploaded_by = models.TextField()
     audio = models.FileField(blank=True, null=False, upload_to='media/audio')
     tags = TaggableManager()
+    cover_image = models.ImageField(
+        blank=False, null=False, upload_to='media/covers', default='media/default/covers/default_cover.png')
 
     def __str__(self):
         return self.title

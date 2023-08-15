@@ -1,11 +1,12 @@
-from django.urls import path
-from .views import AudioView, GetDataView
+from django.urls import path, re_path
+from .views import AudioView, GetDataView, GetMediaFile
 from .apps import AudioserverConfig
 
 
 app_name = AudioserverConfig.name
 urlpatterns = [
-    path('audio/<audio_name>', AudioView.as_view(), name='audio view'),
     path('get/', GetDataView.as_view(), name='get data view'),
+    re_path('^.*', GetMediaFile.as_view(), name="get media file"),
+
 
 ]
