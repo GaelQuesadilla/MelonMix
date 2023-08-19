@@ -53,12 +53,18 @@ If you wish to automatically add music, follow these steps to set up and load so
 1. Create a file named .env in the project root if it doesn't exist.
 
 2. Open the .env file and add the following line, replacing C:\your\music\directory with the full path to the directory containing the songs you want to add.
+   Make sure the path is correctly written and there are no extra spaces.
+
+3. Add your API keys from Google
+
+   1. [Programmable search engine](https://programmablesearchengine.google.com/controlpanel/create)
+   1. [Google API](https://console.cloud.google.com/getting-started)
 
 ```env
 INITIAL_MUSIC_DIR =  C:\your\music\directory
+GOOGLE_API_KEY = 'secret'
+GOOGLE_API_CX = 'secret'
 ```
-
-Make sure the path is correctly written and there are no extra spaces.
 
 ## File Format
 
