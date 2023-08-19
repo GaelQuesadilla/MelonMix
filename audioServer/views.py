@@ -67,7 +67,8 @@ class GetDataView(View):
                 "url": result.audio.url,
                 "tags": list(result.tags.names()),
                 "id": result.pk,
-                "cover_url": result.cover_image.url
+                "cover_url": result.cover_image.url,
+                "lazy_cover_url": result.lazy_cover_image.url,
             }
             serialized_results.append(serialized_result)
         response = {

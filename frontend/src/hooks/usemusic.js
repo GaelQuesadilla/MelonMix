@@ -10,6 +10,7 @@ export const UseMusic = (howlerRef) => {
     duration: 0,
     id: -1,
     cover_url: "",
+    lazy_cover_url: "",
   });
   const setIntervalRef = useRef();
 
