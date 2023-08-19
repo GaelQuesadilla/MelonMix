@@ -7,7 +7,7 @@ export const UseFetchMusic = () => {
   });
   const [searchParams, setSearchParams] = useState({
     initial_index: "0",
-    max_results: "10",
+    max_results: "15",
   });
   const [searchResults, setSearchResults] = useState([]);
   const currentIds = useRef([]);

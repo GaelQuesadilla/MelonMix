@@ -1,10 +1,8 @@
 import { forwardRef, useState } from "react";
 import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/Container";
-import Spinner from "react-bootstrap/Spinner";
+import { LazyImage } from "../global/lazyimage";
 
 export const MusicCard = forwardRef((props, ref) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
   const { music, handleClick } = props;
 
   return (
@@ -15,20 +13,13 @@ export const MusicCard = forwardRef((props, ref) => {
         onClick={() => handleClick(music)}
       >
         <Card.Img
-          className={`music-card__image ${imageLoaded ? "" : "d-none"}`}
+          className="music-card__image"
+          as={LazyImage}
           src={process.env.REACT_APP_BACKEND_URL + music.cover_url}
+          lazy_src={process.env.REACT_APP_BACKEND_URL + music.lazy_cover_url}
           alt="music-note"
           variant="top"
-          onLoad={() => setImageLoaded(true)}
         />
-        {imageLoaded ? null : (
-          <Container className="music-card__loading-image rounded-0 mx-auto d-flex align-items-center justify-content-center">
-            <Container className="d-flex align-items-center justify-content-center">
-              <Spinner variant="primary" className="me-3" />
-              <p className="text fs-4">Loading...</p>
-            </Container>
-          </Container>
-        )}
 
         <Card.Title className="music-card__title w-100 text-center m-0 mt-2 rounded-0 border-0">
           {music.name}
