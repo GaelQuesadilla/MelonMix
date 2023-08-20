@@ -13,6 +13,13 @@ class Command(BaseCommand):
     help = 'load music from your location'
 
     def get_cover_url(self, author, title):
+        try:
+            return self.search_cover_url(author, title)
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            return None
+
+    def search_cover_url(self, author, title):
         query = f'"{author}" "{title}" "cover art" OR "album cover" OR "single cover" OR "Song" OR "Spotify"'
 
         gis = GoogleImagesSearch(
@@ -34,7 +41,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(
                 "Error, add INITIAL_MUSIC_DIR to your env_file "))
             return None
-        print(music_directory)
+        print(f"Get music from {music_directory} dir")
 
         for filename in os.listdir(music_directory):
             if filename.endswith(".mp3"):
@@ -70,4 +77,4 @@ class Command(BaseCommand):
                     f'Audio created: {title} by {author_name}'))
 
         self.stdout.write(self.style.SUCCESS(
-            'Canciones cargadas exitosamente'))
+            'Music loaded'))

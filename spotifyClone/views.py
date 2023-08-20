@@ -9,7 +9,6 @@ class ServeReactView(View):
     def get(self, request, *args, **kwargs):
         try:
             filename = request.path.strip('/')
-            print(filename)
             if filename == 'index.html':
                 return redirect('/')
             file = open(f'{settings.REACT_BUILD_URL}/{filename}', 'rb')

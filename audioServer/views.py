@@ -17,7 +17,6 @@ class GetMediaFile(View):
     def get(self, request, *args, **kwargs):
         try:
             filename = request.path.strip('/')
-            print(f'FILENAME IS {filename}')
             file = open(f'{filename}', 'rb')
             return FileResponse(file)
         except Exception:
@@ -60,7 +59,6 @@ class GetDataView(View):
         results = list(queryset.order_by('id')[initial_index:][:max_results])
         serialized_results = []
         for result in results:
-            print(result.title)
             serialized_result = {
                 "name": result.title,
                 "artist": result.author.author,
